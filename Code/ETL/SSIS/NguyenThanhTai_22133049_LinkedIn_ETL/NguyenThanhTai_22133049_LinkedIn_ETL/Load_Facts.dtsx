@@ -1,0 +1,390 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2025 3:08:11 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ACER"
+  DTS:CreatorName="ACER\acer"
+  DTS:DTSID="{4D59E33F-05B8-4D9C-BBF3-E0B5DF27E359}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Load_Facts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{49391C07-DC0D-4C6C-9468-ACFC53377F1F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load BridgeCompanyIndustry"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0673429D-932B-4B77-A489-F90E1243B440}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load BridgeCompanyIndustry"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;INSERT INTO dbo.BridgeCompanyIndustry (CompanySK, IndustrySK, LoadTimestamp)&#xA;SELECT DISTINCT&#xA;    ISNULL(dc.CompanySK, -1), -- Lookup CompanySK (current)&#xA;    ISNULL(di.IndustrySK, -1), -- Lookup IndustrySK (current)&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM LinkedInStagingDB.dbo.Stg_company_industries stg&#xA;-- Lookup DimCompany&#xA;LEFT JOIN dbo.DimCompany dc ON TRY_CAST(stg.company_id AS INT) = dc.CompanyID AND dc.IsCurrent = 1&#xA;-- Lookup DimIndustry (Sử dụng industry name từ staging để lookup IndustryName trong dim)&#xA;LEFT JOIN dbo.DimIndustry di ON stg.industry = di.IndustryName AND di.IsCurrent = 1&#xA;WHERE dc.CompanySK IS NOT NULL -- Chỉ insert nếu lookup CompanySK thành công&#xA;  AND di.IndustrySK IS NOT NULL -- Chỉ insert nếu lookup IndustrySK thành công&#xA;-- Chống trùng lặp&#xA;AND NOT EXISTS (SELECT 1 FROM dbo.BridgeCompanyIndustry bci WHERE bci.CompanySK = dc.CompanySK AND bci.IndustrySK = di.IndustrySK);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load BridgeCompanySpeciality"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{739DD05F-3F3B-4B63-8151-791A713B096F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load BridgeCompanySpeciality"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;INSERT INTO dbo.BridgeCompanySpeciality (CompanySK, SpecialitySK, LoadTimestamp)&#xA;SELECT DISTINCT&#xA;    ISNULL(dc.CompanySK, -1), -- Lookup CompanySK (current)&#xA;    ISNULL(ds.SpecialitySK, -1), -- Lookup SpecialitySK (current)&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM LinkedInStagingDB.dbo.Stg_company_specialities stg&#xA;-- Lookup DimCompany&#xA;LEFT JOIN dbo.DimCompany dc ON TRY_CAST(stg.company_id AS INT) = dc.CompanyID AND dc.IsCurrent = 1&#xA;-- Lookup DimSpeciality&#xA;LEFT JOIN dbo.DimSpeciality ds ON stg.speciality = ds.SpecialityName AND ds.IsCurrent = 1&#xA;WHERE dc.CompanySK IS NOT NULL -- Chỉ insert nếu lookup CompanySK thành công&#xA;  AND ds.SpecialitySK IS NOT NULL -- Chỉ insert nếu lookup SpecialitySK thành công&#xA;-- Chống trùng lặp&#xA;AND NOT EXISTS (SELECT 1 FROM dbo.BridgeCompanySpeciality bcs WHERE bcs.CompanySK = dc.CompanySK AND bcs.SpecialitySK = ds.SpecialitySK);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load BridgeJobBenefit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{33AB33F5-672E-4D1D-AAA6-893D4E1C0239}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load BridgeJobBenefit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;INSERT INTO dbo.BridgeJobBenefit (JobSK, BenefitTypeSK, IsInferredBenefit, LoadTimestamp)&#xA;SELECT DISTINCT&#xA;    ISNULL(dj.JobSK, -1), -- Lookup JobSK&#xA;    ISNULL(dbt.BenefitTypeSK, -1), -- Lookup BenefitTypeSK (current)&#xA;    CASE WHEN stg.inferred IN ('True', '1') THEN 1 ELSE 0 END AS IsInferredBenefit, -- Chuyển đổi boolean&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM LinkedInStagingDB.dbo.Stg_benefits stg&#xA;-- Lookup DimJob&#xA;LEFT JOIN dbo.DimJob dj ON TRY_CAST(stg.job_id AS INT) = dj.JobID&#xA;-- Lookup DimBenefitType&#xA;LEFT JOIN dbo.DimBenefitType dbt ON stg.type = dbt.BenefitName AND dbt.IsCurrent = 1&#xA;WHERE dj.JobSK IS NOT NULL -- Chỉ insert nếu lookup JobSK thành công&#xA;  AND dbt.BenefitTypeSK IS NOT NULL -- Chỉ insert nếu lookup BenefitTypeSK thành công&#xA;-- Chống trùng lặp&#xA;AND NOT EXISTS (SELECT 1 FROM dbo.BridgeJobBenefit bjb WHERE bjb.JobSK = dj.JobSK AND bjb.BenefitTypeSK = dbt.BenefitTypeSK);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load BridgeJobIndustry"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E6BB69B0-63DE-4112-9A34-B2F490057DF6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load BridgeJobIndustry"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;INSERT INTO dbo.BridgeJobIndustry (JobSK, IndustrySK, LoadTimestamp)&#xA;SELECT DISTINCT&#xA;    ISNULL(dj.JobSK, -1), -- Lookup JobSK&#xA;    ISNULL(di.IndustrySK, -1), -- Lookup IndustrySK (current)&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM LinkedInStagingDB.dbo.Stg_job_industries stg&#xA;-- Lookup DimJob&#xA;LEFT JOIN dbo.DimJob dj ON TRY_CAST(stg.job_id AS INT) = dj.JobID&#xA;-- Lookup DimIndustry (Sử dụng industry_id từ staging để lookup IndustryID trong dim)&#xA;LEFT JOIN dbo.DimIndustry di ON TRY_CAST(stg.industry_id AS INT) = di.IndustryID AND di.IsCurrent = 1&#xA;WHERE dj.JobSK IS NOT NULL -- Chỉ insert nếu lookup JobSK thành công&#xA;  AND di.IndustrySK IS NOT NULL -- Chỉ insert nếu lookup IndustrySK thành công&#xA;-- Chống trùng lặp&#xA;AND NOT EXISTS (SELECT 1 FROM dbo.BridgeJobIndustry bji WHERE bji.JobSK = dj.JobSK AND bji.IndustrySK = di.IndustrySK);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load BridgeJobSkill"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F771B038-4B9E-47C2-B416-2693A6ED8531}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load BridgeJobSkill"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;INSERT INTO dbo.BridgeJobSkill (JobSK, SkillSK, LoadTimestamp)&#xA;SELECT DISTINCT&#xA;    ISNULL(dj.JobSK, -1), -- Lookup JobSK&#xA;    ISNULL(ds.SkillSK, -1), -- Lookup SkillSK (current)&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM LinkedInStagingDB.dbo.Stg_job_skills stg&#xA;-- Lookup DimJob (để lấy JobSK)&#xA;LEFT JOIN dbo.DimJob dj ON TRY_CAST(stg.job_id AS INT) = dj.JobID&#xA;-- Lookup DimSkill (để lấy SkillSK - current)&#xA;LEFT JOIN dbo.DimSkill ds ON stg.skill_abr = ds.SkillAbr AND ds.IsCurrent = 1&#xA;WHERE dj.JobSK IS NOT NULL -- Chỉ insert nếu lookup JobSK thành công&#xA;  AND ds.SkillSK IS NOT NULL -- Chỉ insert nếu lookup SkillSK thành công&#xA;-- Chống trùng lặp nếu chạy nhiều lần trên cùng dữ liệu staging&#xA;AND NOT EXISTS (SELECT 1 FROM dbo.BridgeJobSkill bjs WHERE bjs.JobSK = dj.JobSK AND bjs.SkillSK = ds.SkillSK);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FactCompanySnapshot"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2C6BA79E-9347-48E5-84BC-BCD418F8E335}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FactCompanySnapshot"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;-- Chuyển đổi epoch time và cast kiểu dữ liệu trước&#xA;SELECT&#xA;    TRY_CAST(stg.company_id AS INT) AS CompanyID,&#xA;    TRY_CAST(stg.employee_count AS INT) AS EmployeeCount,&#xA;    TRY_CAST(stg.follower_count AS INT) AS FollowerCount,&#xA;    TRY_CAST(stg.time_recorded AS FLOAT) AS TimeRecorded_raw,&#xA;    CASE WHEN TRY_CAST(stg.time_recorded AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(stg.time_recorded AS BIGINT) AS BIGINT), '1970-01-01') END AS SnapshotTimestamp&#xA;INTO #StagingCompanySnapshot&#xA;FROM LinkedInStagingDB.dbo.Stg_employee_counts stg&#xA;WHERE stg.company_id IS NOT NULL AND LTRIM(RTRIM(stg.company_id)) &lt;&gt; ''; -- Lọc bản ghi có CompanyID&#xA;&#xA;-- Insert dữ liệu vào FactCompanySnapshot&#xA;INSERT INTO dbo.FactCompanySnapshot (SnapshotDateSK, CompanySK, EmployeeCount, FollowerCount, LoadTimestamp)&#xA;SELECT&#xA;    ISNULL(dd.DateSK, -1) AS SnapshotDateSK, -- Lookup DateSK, dùng -1 nếu không tìm thấy&#xA;    ISNULL(dc.CompanySK, -1) AS CompanySK, -- Lookup CompanySK (SCD2 based on SnapshotDate)&#xA;    stg.EmployeeCount,&#xA;    stg.FollowerCount,&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM #StagingCompanySnapshot stg&#xA;-- Lookup DimDate&#xA;LEFT JOIN dbo.DimDate dd ON CAST(stg.SnapshotTimestamp AS DATE) = dd.DateValue&#xA;-- Lookup DimCompany (SCD Type 2 lookup based on snapshot date)&#xA;LEFT JOIN dbo.DimCompany dc ON stg.CompanyID = dc.CompanyID&#xA;                           AND stg.SnapshotTimestamp &gt;= dc.ValidFrom&#xA;                           AND stg.SnapshotTimestamp &lt; dc.ValidTo&#xA;WHERE stg.CompanyID IS NOT NULL -- Chỉ insert nếu CompanyID hợp lệ từ staging&#xA;  AND stg.SnapshotTimestamp IS NOT NULL -- Chỉ insert nếu timestamp hợp lệ&#xA;  AND dd.DateSK IS NOT NULL -- Chỉ insert nếu lookup ngày thành công&#xA;  AND dc.CompanySK IS NOT NULL; -- Chỉ insert nếu lookup công ty SCD2 thành công&#xA;-- Optional: Thêm điều kiện WHERE NOT EXISTS để tránh trùng lặp nếu chạy nhiều lần (cho idempotency)&#xA;-- AND NOT EXISTS (SELECT 1 FROM dbo.FactCompanySnapshot f WHERE f.CompanySK = ISNULL(dc.CompanySK, -1) AND f.SnapshotDateSK = ISNULL(dd.DateSK, -1) AND f.EmployeeCount = stg.EmployeeCount AND f.FollowerCount = stg.FollowerCount)&#xA;&#xA;DROP TABLE #StagingCompanySnapshot;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FactJobPosting"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{975571A5-6185-4495-9A64-0687388D2A83}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FactJobPosting"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;-- Chuyển đổi kiểu dữ liệu và epoch time trước&#xA;SELECT&#xA;    TRY_CAST(stg.job_id AS INT) AS JobID,&#xA;    TRY_CAST(stg.company_id AS INT) AS CompanyID,&#xA;    stg.location,&#xA;    stg.zip_code,&#xA;    stg.fips,&#xA;    ISNULL(stg.location, 'NULL') AS LocationStringNormalized, -- Chuẩn hóa cho lookup&#xA;    ISNULL(stg.zip_code, 'NULL') AS ZipCodeNormalized,         -- Chuẩn hóa cho lookup&#xA;    ISNULL(stg.fips, 'NULL') AS FIPSNormalized,               -- Chuẩn hóa cho lookup&#xA;    stg.formatted_experience_level,&#xA;    ISNULL(stg.pay_period, 'N/A') AS PayPeriodNormalized,&#xA;    ISNULL(stg.currency, 'N/A') AS CurrencyNormalized,&#xA;    ISNULL(stg.compensation_type, 'N/A') AS CompensationTypeNormalized,&#xA;    TRY_CAST(stg.views AS INT) AS Views,&#xA;    TRY_CAST(stg.applies AS INT) AS Applies,&#xA;    TRY_CAST(stg.max_salary AS DECIMAL(18,2)) AS MaxSalary,&#xA;    TRY_CAST(stg.min_salary AS DECIMAL(18,2)) AS MinSalary,&#xA;    TRY_CAST(stg.med_salary AS DECIMAL(18,2)) AS MedSalary,&#xA;    TRY_CAST(stg.normalized_salary AS DECIMAL(18,2)) AS NormalizedSalary,&#xA;    stg.pay_period AS job_df_PayPeriod,&#xA;    stg.currency AS job_df_Currency,&#xA;    stg.compensation_type AS job_df_CompensationType,&#xA;     TRY_CAST(stg.max_salary AS DECIMAL(18,2)) AS job_df_MaxSalary,&#xA;    TRY_CAST(stg.min_salary AS DECIMAL(18,2)) AS job_df_MinSalary,&#xA;    TRY_CAST(stg.med_salary AS DECIMAL(18,2)) AS job_df_MedSalary,&#xA;    TRY_CAST(stg.normalized_salary AS DECIMAL(18,2)) AS job_df_NormalizedSalary,&#xA;    CASE WHEN TRY_CAST(stg.listed_time AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(stg.listed_time AS BIGINT) AS BIGINT), '1970-01-01') END AS ListedTimestamp,&#xA;    CASE WHEN TRY_CAST(expiry AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(expiry AS BIGINT) AS BIGINT), '1970-01-01') END AS ExpiryTimestamp,&#xA;    CASE WHEN TRY_CAST(closed_time AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(closed_time AS BIGINT) AS BIGINT), '1970-01-01') END AS ClosedTimestamp,&#xA;    CASE WHEN TRY_CAST(original_listed_time AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(original_listed_time AS BIGINT) AS BIGINT), '1970-01-01') END AS OriginalListedTimestamp&#xA;INTO #StagingJobPosting&#xA;FROM LinkedInStagingDB.dbo.Stg_job_postings stg&#xA;WHERE stg.job_id IS NOT NULL AND LTRIM(RTRIM(stg.job_id)) &lt;&gt; ''&#xA;  AND TRY_CAST(stg.job_id AS INT) IS NOT NULL -- Chỉ lấy job_id là số nguyên hợp lệ&#xA;  AND TRY_CAST(stg.listed_time AS FLOAT) IS NOT NULL; -- Chỉ lấy bản ghi có listed_time hợp lệ để lookup ngày&#xA;&#xA;-- Insert dữ liệu vào FactJobPosting&#xA;INSERT INTO dbo.FactJobPosting (&#xA;    JobSK, CompanySK, LocationSK, ExperienceLevelSK, CompensationDetailsSK,&#xA;    ListedDateSK, ExpiryDateSK, ClosedDateSK, OriginalListedDateSK,&#xA;    Views, Applies, MaxSalary, MinSalary, MedSalary, NormalizedSalary,&#xA;    job_df_MaxSalary, job_df_MinSalary, job_df_MedSalary, job_df_PayPeriod,&#xA;    job_df_Currency, job_df_CompensationType, job_df_NormalizedSalary,&#xA;    LoadTimestamp&#xA;)&#xA;SELECT&#xA;    ISNULL(dj.JobSK, -1) AS JobSK, -- Lookup JobSK&#xA;    ISNULL(dc.CompanySK, -1) AS CompanySK, -- Lookup CompanySK (SCD2 based on ListedTimestamp)&#xA;    ISNULL(dl.LocationSK, -1) AS LocationSK, -- Lookup LocationSK (SCD2 based on ListedTimestamp)&#xA;    ISNULL(del.ExperienceLevelSK, -1) AS ExperienceLevelSK, -- Lookup ExperienceLevelSK (SCD2 based on ListedTimestamp)&#xA;    ISNULL(dcd.CompensationDetailsSK, -1) AS CompensationDetailsSK, -- Lookup CompensationDetailsSK (SCD2 based on ListedTimestamp)&#xA;    ISNULL(dd_listed.DateSK, -1) AS ListedDateSK, -- Lookup ListedDateSK&#xA;    ISNULL(dd_expiry.DateSK, -1) AS ExpiryDateSK, -- Lookup ExpiryDateSK&#xA;    ISNULL(dd_closed.DateSK, -1) AS ClosedDateSK, -- Lookup ClosedDateSK&#xA;    ISNULL(dd_origlisted.DateSK, -1) AS OriginalListedDateSK, -- Lookup OriginalListedDateSK&#xA;    stg.Views,&#xA;    stg.Applies,&#xA;    stg.MaxSalary,&#xA;    stg.MinSalary,&#xA;    stg.MedSalary,&#xA;    stg.NormalizedSalary,&#xA;    stg.job_df_MaxSalary,&#xA;    stg.job_df_MinSalary,&#xA;    stg.job_df_MedSalary,&#xA;    stg.job_df_PayPeriod,&#xA;    stg.job_df_Currency,&#xA;    stg.job_df_CompensationType,&#xA;    stg.job_df_NormalizedSalary,&#xA;    GETDATE() AS LoadTimestamp&#xA;FROM #StagingJobPosting stg&#xA;-- Lookup DimJob&#xA;LEFT JOIN dbo.DimJob dj ON stg.JobID = dj.JobID&#xA;-- Lookup DimCompany (SCD Type 2 based on listed date)&#xA;LEFT JOIN dbo.DimCompany dc ON stg.CompanyID = dc.CompanyID&#xA;                           AND stg.ListedTimestamp &gt;= dc.ValidFrom&#xA;                           AND stg.ListedTimestamp &lt; dc.ValidTo&#xA;-- Lookup DimLocation (SCD Type 2 based on listed date)&#xA;LEFT JOIN dbo.DimLocation dl ON stg.LocationStringNormalized = dl.LocationStringNormalized&#xA;                            AND stg.ZipCodeNormalized = dl.ZipCodeNormalized&#xA;                            AND stg.FIPSNormalized = dl.FIPSNormalized&#xA;                            AND stg.ListedTimestamp &gt;= dl.ValidFrom&#xA;                            AND stg.ListedTimestamp &lt; dl.ValidTo&#xA;-- Lookup DimExperienceLevel (SCD Type 2 based on listed date)&#xA;LEFT JOIN dbo.DimExperienceLevel del ON stg.formatted_experience_level = del.FormattedExperienceLevel&#xA;                                   AND stg.ListedTimestamp &gt;= del.ValidFrom&#xA;                                   AND stg.ListedTimestamp &lt; del.ValidTo&#xA;-- Lookup DimCompensationDetails (SCD Type 2 based on listed date)&#xA;LEFT JOIN dbo.DimCompensationDetails dcd ON stg.PayPeriodNormalized = dcd.PayPeriodNormalized&#xA;                                        AND stg.CurrencyNormalized = dcd.CurrencyNormalized&#xA;                                        AND stg.CompensationTypeNormalized = dcd.CompensationTypeNormalized&#xA;                                        AND stg.ListedTimestamp &gt;= dcd.ValidFrom&#xA;                                        AND stg.ListedTimestamp &lt; dcd.ValidTo&#xA;-- Lookup DimDate for various timestamps&#xA;LEFT JOIN dbo.DimDate dd_listed ON CAST(stg.ListedTimestamp AS DATE) = dd_listed.DateValue&#xA;LEFT JOIN dbo.DimDate dd_expiry ON CAST(stg.ExpiryTimestamp AS DATE) = dd_expiry.DateValue -- Có thể là NULL&#xA;LEFT JOIN dbo.DimDate dd_closed ON CAST(stg.ClosedTimestamp AS DATE) = dd_closed.DateValue -- Có thể là NULL&#xA;LEFT JOIN dbo.DimDate dd_origlisted ON CAST(stg.OriginalListedTimestamp AS DATE) = dd_origlisted.DateValue -- Có thể là NULL&#xA;WHERE dj.JobSK IS NOT NULL -- Chỉ insert nếu lookup JobSK thành công&#xA;  AND dd_listed.DateSK IS NOT NULL; -- Chỉ insert nếu lookup ngày đăng thành công&#xA;-- Optional: Thêm điều kiện WHERE NOT EXISTS để tránh trùng lặp nếu chạy nhiều lần&#xA;/*&#xA;AND NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM dbo.FactJobPosting f&#xA;    WHERE f.JobSK = ISNULL(dj.JobSK, -1)&#xA;      AND f.ListedDateSK = ISNULL(dd_listed.DateSK, -1)&#xA;      -- Thêm các cột khác để xác định bản ghi trùng lặp duy nhất nếu cần&#xA;)&#xA;*/&#xA;&#xA;DROP TABLE #StagingJobPosting;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B54D4AD2-4D54-47A2-AB4F-B31F4B0997FC}"
+      DTS:From="Package\Load FactCompanySnapshot"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load FactJobPosting" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C06ACAA-E679-4E07-A5CA-4CBB0E51635E}"
+      DTS:From="Package\Load FactJobPosting"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load BridgeJobSkill" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A2CDB47-1F7F-4FAD-A402-383A4C32994E}"
+      DTS:From="Package\Load BridgeJobSkill"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load BridgeJobIndustry" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A8B45AB1-5FDA-4120-9CEE-B6636C7E4D2C}"
+      DTS:From="Package\Load BridgeJobIndustry"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load BridgeJobBenefit" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{3B15787E-C389-4031-AFB9-8759E777046A}"
+      DTS:From="Package\Load BridgeJobBenefit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Load BridgeCompanyIndustry" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{05F478A7-EB97-4C2C-8F16-1F2AC6C91AFE}"
+      DTS:From="Package\Load BridgeCompanyIndustry"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Load BridgeCompanySpeciality" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="212,42.6666666666667"
+          Id="Package\Load FactCompanySnapshot"
+          TopLeft="207.499990724027,60.4499971175195" />
+        <NodeLayout
+          Size="176,42.6666666666667"
+          Id="Package\Load FactJobPosting"
+          TopLeft="231.093739669305,151.937492755056" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="316.296865196666,103.116663784186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.8208289708695"
+              Start="0,0"
+              End="0,41.3208289708695">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.3208289708695" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.666666666667,42.6666666666667"
+          Id="Package\Load BridgeJobSkill"
+          TopLeft="227.499989829958,222.29998939991" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="315.963531416298,194.604159421722">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.695829978188"
+              Start="0,0"
+              End="0,20.195829978188">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.195829978188" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190.666666666667,42.6666666666667"
+          Id="Package\Load BridgeJobIndustry"
+          TopLeft="445.13886898963,218.183322929542" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="398.166656496624,241.574989498059">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.972212493006,0"
+              Start="0,0"
+              End="39.472212493006,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.472212493006,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,42.6666666666667"
+          Id="Package\Load BridgeJobBenefit"
+          TopLeft="442.152758012009,139.605548898644" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="537.312480167486,218.183322929542">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-35.9111073642308"
+              Start="0,0"
+              End="0,-28.4111073642308">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-28.4111073642308" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="218.666666666667,42.6666666666667"
+          Id="Package\Load BridgeCompanyIndustry"
+          TopLeft="474.392339904121,63.5555525249906" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="534.152758012009,139.605548898644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.5729152254452,-33.3833297069869"
+              Start="0,0"
+              End="49.5729152254452,-25.8833297069869">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-12.6916648534935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-12.6916648534935"
+                    Point2="0,-16.6916648534935"
+                    Point3="4,-16.6916648534935" />
+                  <mssgle:LineSegment
+                    End="45.5729152254452,-16.6916648534935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.5729152254452,-16.6916648534935"
+                    Point2="49.5729152254452,-16.6916648534935"
+                    Point3="49.5729152254452,-20.6916648534935" />
+                  <mssgle:LineSegment
+                    End="49.5729152254452,-25.8833297069869" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="224,42.6666666666667"
+          Id="Package\Load BridgeCompanySpeciality"
+          TopLeft="657.795113692734,140.652771070931" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="618.836784348566,106.222219191657">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150.958329344168,34.4305518792737"
+              Start="0,0"
+              End="150.958329344168,26.9305518792737">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.9222812683746" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.9222812683746"
+                    Point2="0,13.9222812683746"
+                    Point3="4,13.9222812683746" />
+                  <mssgle:LineSegment
+                    End="146.958329344168,13.9222812683746" />
+                  <mssgle:CubicBezierSegment
+                    Point1="146.958329344168,13.9222812683746"
+                    Point2="150.958329344168,13.9222812683746"
+                    Point3="150.958329344168,17.9222812683746" />
+                  <mssgle:LineSegment
+                    End="150.958329344168,26.9305518792737" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

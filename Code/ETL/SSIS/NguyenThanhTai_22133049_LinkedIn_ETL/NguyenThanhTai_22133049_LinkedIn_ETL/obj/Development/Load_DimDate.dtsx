@@ -1,0 +1,2409 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/21/2025 11:03:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ACER"
+  DTS:CreatorName="ACER\acer"
+  DTS:DTSID="{23152BF2-469A-47F7-B2E8-798DCB16551F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{03C9DD11-11CB-4B87-AA4F-C456A3716E1E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{387EE90C-2985-4F62-A605-3C162603120E}"
+      DTS:ObjectName="Acer\MSSQLSERVER_DEV.LinkedInDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Acer\MSSQLSERVER_DEV;Initial Catalog=LinkedInDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInStagingDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B78B0021-9D99-4889-A0B1-23F813458A1F}"
+      DTS:ObjectName="Acer\MSSQLSERVER_DEV.LinkedInStagingDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Acer\MSSQLSERVER_DEV;Initial Catalog=LinkedInStagingDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.Temp]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F8B3B5B7-959C-4D51-914B-4241A66BF250}"
+      DTS:ObjectName="Acer\MSSQLSERVER_DEV.Temp">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Acer\MSSQLSERVER_DEV;Initial Catalog=Temp;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B099A36E-BD8F-4BFA-A1A6-513DAA967617}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Copy Temp_DimDate to Stg_DimDate"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stg_DimDate"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stg_DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInStagingDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInStagingDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[date_key]"
+                      cachedDataType="i4"
+                      cachedName="date_key"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[date_key]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[full_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="full_date"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[full_date]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[full_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[day_of_week]"
+                      cachedDataType="ui1"
+                      cachedName="day_of_week"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_of_week]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_of_week]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[day_num_in_month]"
+                      cachedDataType="ui1"
+                      cachedName="day_num_in_month"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_num_in_month]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_num_in_month]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[day_num_overall]"
+                      cachedDataType="i2"
+                      cachedName="day_num_overall"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_num_overall]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_num_overall]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[day_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="day_name"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_name]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[day_abbrev]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="day_abbrev"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_abbrev]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_abbrev]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[weekday_flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="weekday_flag"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[weekday_flag]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[weekday_flag]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[week_num_in_year]"
+                      cachedDataType="ui1"
+                      cachedName="week_num_in_year"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_num_in_year]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_num_in_year]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[week_num_overall]"
+                      cachedDataType="i2"
+                      cachedName="week_num_overall"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_num_overall]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_num_overall]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[week_begin_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="week_begin_date"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_begin_date]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_begin_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[week_begin_date_key]"
+                      cachedDataType="i4"
+                      cachedName="week_begin_date_key"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_begin_date_key]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_begin_date_key]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[month]"
+                      cachedDataType="ui1"
+                      cachedName="month"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[month_num_overall]"
+                      cachedDataType="i2"
+                      cachedName="month_num_overall"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month_num_overall]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_num_overall]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[month_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="month_name"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month_name]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[month_abbrev]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="month_abbrev"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month_abbrev]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_abbrev]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[quarter]"
+                      cachedDataType="ui1"
+                      cachedName="quarter"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[quarter]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[quarter]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[year]"
+                      cachedDataType="i4"
+                      cachedName="year"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[year]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[year]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[yearmo]"
+                      cachedDataType="i4"
+                      cachedName="yearmo"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[yearmo]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[yearmo]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[fiscal_month]"
+                      cachedDataType="ui1"
+                      cachedName="fiscal_month"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[fiscal_month]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_month]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[fiscal_quarter]"
+                      cachedDataType="ui1"
+                      cachedName="fiscal_quarter"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[fiscal_quarter]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_quarter]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[fiscal_year]"
+                      cachedDataType="i4"
+                      cachedName="fiscal_year"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[fiscal_year]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_year]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[last_day_in_month_flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="last_day_in_month_flag"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[last_day_in_month_flag]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[last_day_in_month_flag]" />
+                    <inputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].Columns[same_day_year_ago_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="same_day_year_ago_date"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[same_day_year_ago_date]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[same_day_year_ago_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      dataType="i4"
+                      name="date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[full_date]"
+                      dataType="dbTimeStamp"
+                      name="full_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_of_week]"
+                      dataType="ui1"
+                      name="day_of_week" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_num_in_month]"
+                      dataType="ui1"
+                      name="day_num_in_month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_num_overall]"
+                      dataType="i2"
+                      name="day_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="day_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="day_abbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="weekday_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_num_in_year]"
+                      dataType="ui1"
+                      name="week_num_in_year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_num_overall]"
+                      dataType="i2"
+                      name="week_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      name="week_begin_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[week_begin_date_key]"
+                      dataType="i4"
+                      name="week_begin_date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month]"
+                      dataType="ui1"
+                      name="month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month_num_overall]"
+                      dataType="i2"
+                      name="month_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="month_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="month_abbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[quarter]"
+                      dataType="ui1"
+                      name="quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[year]"
+                      dataType="i4"
+                      name="year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[yearmo]"
+                      dataType="i4"
+                      name="yearmo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[fiscal_month]"
+                      dataType="ui1"
+                      name="fiscal_month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[fiscal_quarter]"
+                      dataType="ui1"
+                      name="fiscal_quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[fiscal_year]"
+                      dataType="i4"
+                      name="fiscal_year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="last_day_in_month_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      name="same_day_year_ago_date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - Temp_DimDate"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DECLARE @StartYear INT = 2023;
+DECLARE @EndYear INT = 2024;  
+
+SELECT
+    date_key, full_date, day_of_week, day_num_in_month, day_num_overall, day_name, day_abbrev,
+    weekday_flag, week_num_in_year, week_num_overall, week_begin_date, week_begin_date_key,
+    month, month_num_overall, month_name, month_abbrev, quarter, year, yearmo,
+    fiscal_month, fiscal_quarter, fiscal_year, last_day_in_month_flag, same_day_year_ago_date
+FROM dbo.DimDate -- Bảng DimDate trong DB Temp
+WHERE year &gt;= @StartYear AND year &lt;= @EndYear;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.Temp]"
+                  connectionManagerRefId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.Temp]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[date_key]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[date_key]"
+                      name="date_key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[full_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[full_date]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[full_date]"
+                      name="full_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_of_week]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_of_week]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_of_week]"
+                      name="day_of_week"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_num_in_month]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_num_in_month]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_num_in_month]"
+                      name="day_num_in_month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_num_overall]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_num_overall]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_num_overall]"
+                      name="day_num_overall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_name]"
+                      length="9"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_name]"
+                      name="day_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_abbrev]"
+                      length="3"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[day_abbrev]"
+                      name="day_abbrev"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[weekday_flag]"
+                      length="10"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[weekday_flag]"
+                      name="weekday_flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_num_in_year]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_num_in_year]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_num_in_year]"
+                      name="week_num_in_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_num_overall]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_num_overall]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_num_overall]"
+                      name="week_num_overall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_begin_date]"
+                      name="week_begin_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_begin_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date_key]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[week_begin_date_key]"
+                      name="week_begin_date_key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month]"
+                      name="month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_num_overall]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month_num_overall]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_num_overall]"
+                      name="month_num_overall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month_name]"
+                      length="9"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_name]"
+                      name="month_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month_abbrev]"
+                      length="3"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[month_abbrev]"
+                      name="month_abbrev"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[quarter]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[quarter]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[quarter]"
+                      name="quarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[year]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[year]"
+                      name="year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[yearmo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[yearmo]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[yearmo]"
+                      name="yearmo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_month]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[fiscal_month]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_month]"
+                      name="fiscal_month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_quarter]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[fiscal_quarter]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_quarter]"
+                      name="fiscal_quarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[fiscal_year]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[fiscal_year]"
+                      name="fiscal_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[last_day_in_month_flag]"
+                      length="20"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[last_day_in_month_flag]"
+                      name="last_day_in_month_flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[same_day_year_ago_date]"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].Columns[same_day_year_ago_date]"
+                      name="same_day_year_ago_date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[date_key]"
+                      dataType="i4"
+                      name="date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[full_date]"
+                      dataType="dbTimeStamp"
+                      name="full_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_of_week]"
+                      dataType="ui1"
+                      name="day_of_week" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_num_in_month]"
+                      dataType="ui1"
+                      name="day_num_in_month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_num_overall]"
+                      dataType="i2"
+                      name="day_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="day_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="day_abbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="weekday_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_num_in_year]"
+                      dataType="ui1"
+                      name="week_num_in_year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_num_overall]"
+                      dataType="i2"
+                      name="week_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      name="week_begin_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date_key]"
+                      dataType="i4"
+                      name="week_begin_date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month]"
+                      dataType="ui1"
+                      name="month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month_num_overall]"
+                      dataType="i2"
+                      name="month_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="month_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="month_abbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[quarter]"
+                      dataType="ui1"
+                      name="quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[year]"
+                      dataType="i4"
+                      name="year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[yearmo]"
+                      dataType="i4"
+                      name="yearmo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[fiscal_month]"
+                      dataType="ui1"
+                      name="fiscal_month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[fiscal_quarter]"
+                      dataType="ui1"
+                      name="fiscal_quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[fiscal_year]"
+                      dataType="i4"
+                      name="fiscal_year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="last_day_in_month_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output].ExternalColumns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      name="same_day_year_ago_date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[date_key]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[date_key]"
+                      name="date_key" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[full_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[full_date]"
+                      name="full_date" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_of_week]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_of_week]"
+                      name="day_of_week" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_num_in_month]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_num_in_month]"
+                      name="day_num_in_month" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_num_overall]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_num_overall]"
+                      name="day_num_overall" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_name]"
+                      name="day_name" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[day_abbrev]"
+                      name="day_abbrev" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[weekday_flag]"
+                      name="weekday_flag" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_num_in_year]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_num_in_year]"
+                      name="week_num_in_year" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_num_overall]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_num_overall]"
+                      name="week_num_overall" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_begin_date]"
+                      name="week_begin_date" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_begin_date_key]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[week_begin_date_key]"
+                      name="week_begin_date_key" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month]"
+                      name="month" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month_num_overall]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month_num_overall]"
+                      name="month_num_overall" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month_name]"
+                      name="month_name" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[month_abbrev]"
+                      name="month_abbrev" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[quarter]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[quarter]"
+                      name="quarter" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[year]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[year]"
+                      name="year" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[yearmo]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[yearmo]"
+                      name="yearmo" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[fiscal_month]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[fiscal_month]"
+                      name="fiscal_month" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[fiscal_quarter]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[fiscal_quarter]"
+                      name="fiscal_quarter" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[fiscal_year]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[fiscal_year]"
+                      name="fiscal_year" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[last_day_in_month_flag]"
+                      name="last_day_in_month_flag" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[same_day_year_ago_date]"
+                      name="same_day_year_ago_date" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Copy Temp_DimDate to Stg_DimDate.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load DW_DimDate from Staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A185083B-FBC5-498D-9AF0-10B8F3E993AB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load DW_DimDate from Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DER - Transform Date Attributes for DW"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Inputs[Derived Column Input].Columns[weekday_flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="weekday_flag"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[weekday_flag]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Output].Columns[DW_IsWeekend]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Output].Columns[DW_IsWeekend]"
+                      name="DW_IsWeekend"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_BOOL)(#{Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[weekday_flag]} == "Weekend" ? 1 : 0)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_BOOL)(weekday_flag == "Weekend" ? 1 : 0)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - LinkedInDW_DimDate"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[month]"
+                      cachedDataType="ui1"
+                      cachedName="month"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[quarter]"
+                      cachedDataType="ui1"
+                      cachedName="quarter"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[quarter]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[year]"
+                      cachedDataType="i4"
+                      cachedName="year"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[year]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[date_key]"
+                      cachedDataType="i4"
+                      cachedName="date_key"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DateSK]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[date_key]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[full_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="full_date"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DateValue]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[full_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[day_of_week]"
+                      cachedDataType="ui1"
+                      cachedName="day_of_week"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_of_week]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[day_num_in_month]"
+                      cachedDataType="ui1"
+                      cachedName="day_num_in_month"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayNumInMonth]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_num_in_month]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[day_num_overall]"
+                      cachedDataType="i2"
+                      cachedName="day_num_overall"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayNumOverall]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_num_overall]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[day_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="day_name"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayName]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[day_abbrev]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="day_abbrev"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayAbbrev]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_abbrev]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[week_num_in_year]"
+                      cachedDataType="ui1"
+                      cachedName="week_num_in_year"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekNumInYear]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_num_in_year]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[week_num_overall]"
+                      cachedDataType="i2"
+                      cachedName="week_num_overall"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekNumOverall]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_num_overall]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[week_begin_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="week_begin_date"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekBeginDate]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_begin_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[week_begin_date_key]"
+                      cachedDataType="i4"
+                      cachedName="week_begin_date_key"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekBeginDateKey]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_begin_date_key]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[month_num_overall]"
+                      cachedDataType="i2"
+                      cachedName="month_num_overall"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthNumOverall]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_num_overall]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[month_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="month_name"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[month_abbrev]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="month_abbrev"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthAbbrev]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_abbrev]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[yearmo]"
+                      cachedDataType="i4"
+                      cachedName="yearmo"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[YearMonth]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[yearmo]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[fiscal_month]"
+                      cachedDataType="ui1"
+                      cachedName="fiscal_month"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FiscalMonth]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_month]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[fiscal_quarter]"
+                      cachedDataType="ui1"
+                      cachedName="fiscal_quarter"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FiscalQuarter]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_quarter]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[fiscal_year]"
+                      cachedDataType="i4"
+                      cachedName="fiscal_year"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_year]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[same_day_year_ago_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="same_day_year_ago_date"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[SameDayYearAgoDate]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[same_day_year_ago_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].Columns[DW_IsWeekend]"
+                      cachedDataType="bool"
+                      cachedName="DW_IsWeekend"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[IsWeekend]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Output].Columns[DW_IsWeekend]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DateSK]"
+                      dataType="i4"
+                      name="DateSK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DateValue]"
+                      dataType="dbDate"
+                      name="DateValue" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
+                      dataType="ui1"
+                      name="DayOfWeek" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayNumInMonth]"
+                      dataType="ui1"
+                      name="DayNumInMonth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayNumOverall]"
+                      dataType="i2"
+                      name="DayNumOverall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="DayName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayAbbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DayAbbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[IsWeekend]"
+                      dataType="bool"
+                      name="IsWeekend" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekNumInYear]"
+                      dataType="ui1"
+                      name="WeekNumInYear" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekNumOverall]"
+                      dataType="i2"
+                      name="WeekNumOverall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekBeginDate]"
+                      dataType="dbDate"
+                      name="WeekBeginDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[WeekBeginDateKey]"
+                      dataType="i4"
+                      name="WeekBeginDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      dataType="ui1"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthNumOverall]"
+                      dataType="i2"
+                      name="MonthNumOverall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthAbbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="MonthAbbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      dataType="ui1"
+                      name="Quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="i2"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[YearMonth]"
+                      dataType="i4"
+                      name="YearMonth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FiscalMonth]"
+                      dataType="ui1"
+                      name="FiscalMonth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FiscalQuarter]"
+                      dataType="ui1"
+                      name="FiscalQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      dataType="i2"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[LastDayInMonthFlag]"
+                      dataType="bool"
+                      name="LastDayInMonthFlag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input].ExternalColumns[SameDayYearAgoDate]"
+                      dataType="dbDate"
+                      name="SameDayYearAgoDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - Stg_DimDate_for_DW_Load"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stg_DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInStagingDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV.LinkedInStagingDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[date_key]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[date_key]"
+                      name="date_key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[full_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[full_date]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[full_date]"
+                      name="full_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_of_week]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_of_week]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_of_week]"
+                      name="day_of_week"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_num_in_month]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_num_in_month]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_num_in_month]"
+                      name="day_num_in_month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_num_overall]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_num_overall]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_num_overall]"
+                      name="day_num_overall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_name]"
+                      length="9"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_name]"
+                      name="day_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_abbrev]"
+                      length="3"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[day_abbrev]"
+                      name="day_abbrev"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[weekday_flag]"
+                      length="10"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[weekday_flag]"
+                      name="weekday_flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_num_in_year]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_num_in_year]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_num_in_year]"
+                      name="week_num_in_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_num_overall]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_num_overall]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_num_overall]"
+                      name="week_num_overall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_begin_date]"
+                      name="week_begin_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_begin_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date_key]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[week_begin_date_key]"
+                      name="week_begin_date_key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month]"
+                      name="month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_num_overall]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month_num_overall]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_num_overall]"
+                      name="month_num_overall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month_name]"
+                      length="9"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_name]"
+                      name="month_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month_abbrev]"
+                      length="3"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[month_abbrev]"
+                      name="month_abbrev"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[quarter]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[quarter]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[quarter]"
+                      name="quarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[year]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[year]"
+                      name="year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[yearmo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[yearmo]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[yearmo]"
+                      name="yearmo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_month]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[fiscal_month]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_month]"
+                      name="fiscal_month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_quarter]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[fiscal_quarter]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_quarter]"
+                      name="fiscal_quarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[fiscal_year]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[fiscal_year]"
+                      name="fiscal_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[last_day_in_month_flag]"
+                      length="20"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[last_day_in_month_flag]"
+                      name="last_day_in_month_flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[same_day_year_ago_date]"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].Columns[same_day_year_ago_date]"
+                      name="same_day_year_ago_date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[date_key]"
+                      dataType="i4"
+                      name="date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[full_date]"
+                      dataType="dbTimeStamp"
+                      name="full_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_of_week]"
+                      dataType="ui1"
+                      name="day_of_week" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_num_in_month]"
+                      dataType="ui1"
+                      name="day_num_in_month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_num_overall]"
+                      dataType="i2"
+                      name="day_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="day_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="day_abbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="weekday_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_num_in_year]"
+                      dataType="ui1"
+                      name="week_num_in_year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_num_overall]"
+                      dataType="i2"
+                      name="week_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      name="week_begin_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[week_begin_date_key]"
+                      dataType="i4"
+                      name="week_begin_date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month]"
+                      dataType="ui1"
+                      name="month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month_num_overall]"
+                      dataType="i2"
+                      name="month_num_overall" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="month_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="month_abbrev" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[quarter]"
+                      dataType="ui1"
+                      name="quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[year]"
+                      dataType="i4"
+                      name="year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[yearmo]"
+                      dataType="i4"
+                      name="yearmo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[fiscal_month]"
+                      dataType="ui1"
+                      name="fiscal_month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[fiscal_quarter]"
+                      dataType="ui1"
+                      name="fiscal_quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[fiscal_year]"
+                      dataType="i4"
+                      name="fiscal_year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="last_day_in_month_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output].ExternalColumns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      name="same_day_year_ago_date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[date_key]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[date_key]"
+                      name="date_key" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[full_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[full_date]"
+                      name="full_date" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_of_week]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_of_week]"
+                      name="day_of_week" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_num_in_month]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_num_in_month]"
+                      name="day_num_in_month" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_num_overall]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_num_overall]"
+                      name="day_num_overall" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_name]"
+                      name="day_name" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[day_abbrev]"
+                      name="day_abbrev" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[weekday_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[weekday_flag]"
+                      name="weekday_flag" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_num_in_year]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_num_in_year]"
+                      name="week_num_in_year" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_num_overall]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_num_overall]"
+                      name="week_num_overall" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_begin_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_begin_date]"
+                      name="week_begin_date" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_begin_date_key]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[week_begin_date_key]"
+                      name="week_begin_date_key" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month]"
+                      name="month" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month_num_overall]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month_num_overall]"
+                      name="month_num_overall" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month_name]"
+                      name="month_name" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month_abbrev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[month_abbrev]"
+                      name="month_abbrev" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[quarter]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[quarter]"
+                      name="quarter" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[year]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[year]"
+                      name="year" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[yearmo]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[yearmo]"
+                      name="yearmo" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[fiscal_month]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[fiscal_month]"
+                      name="fiscal_month" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[fiscal_quarter]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[fiscal_quarter]"
+                      name="fiscal_quarter" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[fiscal_year]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[fiscal_year]"
+                      name="fiscal_year" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[last_day_in_month_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[last_day_in_month_flag]"
+                      name="last_day_in_month_flag" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[same_day_year_ago_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[same_day_year_ago_date]"
+                      name="same_day_year_ago_date" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load DW_DimDate from Staging.Paths[Derived Column Output]"
+              endId="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Load DW_DimDate from Staging.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Delete DW_DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{65D0BF3D-383A-42C6-950E-C83FFA0C3F81}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Delete DW_DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{387EE90C-2985-4F62-A605-3C162603120E}"
+          SQLTask:SqlStatementSource="DELETE FROM DimDate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Truncate Stg_DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{515D4921-BE68-4B67-8E34-3C3C328B134F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Truncate Stg_DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B78B0021-9D99-4889-A0B1-23F813458A1F}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stg_DimDate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A3A7CCCF-7AD5-4772-9A1F-F97A81B05DB2}"
+      DTS:From="Package\SQL - Truncate Stg_DimDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT - Copy Temp_DimDate to Stg_DimDate" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BC7A8FCE-8027-4E2D-8C51-77106BF10589}"
+      DTS:From="Package\DFT - Copy Temp_DimDate to Stg_DimDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL - Delete DW_DimDate" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2F8F47AB-2D1E-4701-92A8-68A619ED9BD3}"
+      DTS:From="Package\SQL - Delete DW_DimDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DFT - Load DW_DimDate from Staging" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="286.666666666667,42.6666666666667"
+          Id="Package\DFT - Copy Temp_DimDate to Stg_DimDate"
+          TopLeft="173.12499226071,145.599993057251" />
+        <NodeLayout
+          Size="262.666666666667,42.6666666666667"
+          Id="Package\DFT - Load DW_DimDate from Staging"
+          TopLeft="186.249991673976,298.999985742569" />
+        <NodeLayout
+          Size="216,42.6666666666667"
+          Id="Package\SQL - Truncate Stg_DimDate"
+          TopLeft="207.499990724028,71.4999965906145" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="315.979158159036,114.166663257281">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.4333297999699"
+              Start="0,0"
+              End="0,23.9333297999699">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9333297999699" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="205.333333333334,42.6666666666667"
+          Id="Package\SQL - Delete DW_DimDate"
+          TopLeft="204.999990835786,228.149989120961" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="307.666657502453,270.816655787627">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.91666750485649,28.183329954942"
+              Start="0,0"
+              End="9.91666750485649,20.683329954942">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.091664977471" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.091664977471"
+                    Point2="0,14.091664977471"
+                    Point3="4,14.091664977471" />
+                  <mssgle:LineSegment
+                    End="5.91666750485649,14.091664977471" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.91666750485649,14.091664977471"
+                    Point2="9.91666750485649,14.091664977471"
+                    Point3="9.91666750485649,18.091664977471" />
+                  <mssgle:LineSegment
+                    End="9.91666750485649,20.683329954942" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="316.458325594043,188.266659723918">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.79166809159045,39.883329397043"
+              Start="0,0"
+              End="-8.79166809159045,32.383329397043">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9416646985215" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.9416646985215"
+                    Point2="0,19.9416646985215"
+                    Point3="-4,19.9416646985215" />
+                  <mssgle:LineSegment
+                    End="-4.79166809159045,19.9416646985215" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.79166809159045,19.9416646985215"
+                    Point2="-8.79166809159045,19.9416646985215"
+                    Point3="-8.79166809159045,23.9416646985215" />
+                  <mssgle:LineSegment
+                    End="-8.79166809159045,32.383329397043" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Copy Temp_DimDate to Stg_DimDate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182.666666666667,42.6666666666667"
+          Id="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate"
+          TopLeft="274.999991804362,95.9999971389771" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate"
+          TopLeft="314.999990612269,219.999993443489" />
+        <EdgeLayout
+          Id="Package\DFT - Copy Temp_DimDate to Stg_DimDate.Paths[OLE DB Source Output]"
+          TopLeft="366.333325137695,138.666663805644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.6666654745737,81.3333296378452"
+              Start="0,0"
+              End="34.6666654745737,73.8333296378452">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.6666648189226" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.6666648189226"
+                    Point2="0,40.6666648189226"
+                    Point3="4,40.6666648189226" />
+                  <mssgle:LineSegment
+                    End="30.6666654745737,40.6666648189226" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.6666654745737,40.6666648189226"
+                    Point2="34.6666654745737,40.6666648189226"
+                    Point3="34.6666654745737,44.6666648189226" />
+                  <mssgle:LineSegment
+                    End="34.6666654745737,73.8333296378452" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Copy Temp_DimDate to Stg_DimDate\DST - Stg_DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Copy Temp_DimDate to Stg_DimDate\SRC - Temp_DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT - Load DW_DimDate from Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load"
+          TopLeft="150.624993266538,39.6499981093407" />
+        <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate"
+          TopLeft="156.317301362897,216.749989926815" />
+        <NodeLayout
+          Size="269.333333333334,42.6666666666667"
+          Id="Package\DFT - Load DW_DimDate from Staging\DER - Transform Date Attributes for DW"
+          TopLeft="112.499994970858,133.249993646145" />
+        <EdgeLayout
+          Id="Package\DFT - Load DW_DimDate from Staging.Paths[OLE DB Source Output]"
+          TopLeft="271.291659933205,82.3166647760074">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.12499829568,50.9333288701376"
+              Start="0,0"
+              End="-24.12499829568,43.4333288701376">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4666644350688" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.4666644350688"
+                    Point2="0,25.4666644350688"
+                    Point3="-4,25.4666644350688" />
+                  <mssgle:LineSegment
+                    End="-20.12499829568,25.4666644350688" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.12499829568,25.4666644350688"
+                    Point2="-24.12499829568,25.4666644350688"
+                    Point3="-24.12499829568,29.4666644350688" />
+                  <mssgle:LineSegment
+                    End="-24.12499829568,43.4333288701376" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load DW_DimDate from Staging.Paths[Derived Column Output]"
+          TopLeft="247.166661637525,175.916660312812">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.8173063920386,40.8333296140034"
+              Start="0,0"
+              End="15.8173063920386,33.3333296140034">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4166648070017" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.4166648070017"
+                    Point2="0,20.4166648070017"
+                    Point3="4,20.4166648070017" />
+                  <mssgle:LineSegment
+                    End="11.8173063920386,20.4166648070017" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.8173063920386,20.4166648070017"
+                    Point2="15.8173063920386,20.4166648070017"
+                    Point3="15.8173063920386,24.4166648070017" />
+                  <mssgle:LineSegment
+                    End="15.8173063920386,33.3333296140034" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load DW_DimDate from Staging\SRC - Stg_DimDate_for_DW_Load">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load DW_DimDate from Staging\DST - LinkedInDW_DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

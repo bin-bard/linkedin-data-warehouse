@@ -1,0 +1,27 @@
+CREATE TABLE DimDate (
+	date_key INT NOT NULL,
+	full_date SMALLDATETIME,
+	day_of_week TINYINT,
+	day_num_in_month TINYINT,
+	day_num_overall SMALLINT,
+	day_name VARCHAR(9),
+	day_abbrev CHAR(3),
+	weekday_flag VARCHAR(10),
+	week_num_in_year TINYINT,
+	week_num_overall SMALLINT,
+	week_begin_date SMALLDATETIME,
+    week_begin_date_key INT,
+	month TINYINT,
+	month_num_overall SMALLINT,
+	month_name VARCHAR(9),
+	month_abbrev CHAR(3),
+	quarter TINYINT,
+	year INT,
+	yearmo INT,
+	fiscal_month TINYINT,
+	fiscal_quarter TINYINT,
+	fiscal_year INT,
+    last_day_in_month_flag VARCHAR(20), -- để phù hợp với 'Not Month End'
+    same_day_year_ago_date SMALLDATETIME,
+	PRIMARY KEY (date_key)
+);

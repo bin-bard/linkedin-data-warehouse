@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Acer_MSSQLSERVER_DEV.LinkedInDW"
+  DTS:DTSID="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=Acer\MSSQLSERVER_DEV;Initial Catalog=LinkedInDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-NguyenThanhTai_22133049_LinkedIn_ETL-{C6133D4D-79C2-4AB3-8744-DADD70B21A77}Acer\MSSQLSERVER_DEV.LinkedInDW;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

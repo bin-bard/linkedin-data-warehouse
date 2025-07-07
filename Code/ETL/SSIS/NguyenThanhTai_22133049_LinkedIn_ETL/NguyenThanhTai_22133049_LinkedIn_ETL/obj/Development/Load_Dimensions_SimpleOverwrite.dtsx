@@ -1,0 +1,731 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2025 1:50:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ACER"
+  DTS:CreatorName="ACER\acer"
+  DTS:DTSID="{369ACDD5-3EA0-4927-9B1B-EB96BCEAFE41}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Load_Dimensions_SimpleOverwrite"
+  DTS:PackageType="5"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{00378641-F6E1-4085-88DC-51E78AA628AC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Acer\MSSQLSERVER_DEV]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D0464283-7D1F-4FAA-8F98-BA8044AAA1BD}"
+      DTS:ObjectName="Acer\MSSQLSERVER_DEV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Acer\MSSQLSERVER_DEV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Load_Dimensions_SimpleOverwrite-{D0464283-7D1F-4FAA-8F98-BA8044AAA1BD}Acer\MSSQLSERVER_DEV;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alter DimCompany Columns Size"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1F46DAD0-2C60-4931-A72E-8B50905AA79B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alter DimCompany Columns Size"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;-- Sửa đổi kích thước các cột có khả năng gây lỗi truncation trong DimCompany&#xA;-- Kiểm tra và chỉ ALTER nếu cột chưa phải NVARCHAR(MAX)&#xA;&#xA;-- Alter Name&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'Name'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1) -- -1 indicates MAX&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN Name NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.Name column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;-- Alter State&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'State'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1)&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN State NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.State column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;-- Alter Country&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'Country'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1)&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN Country NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.Country column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;-- Alter City&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'City'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1)&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN City NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.City column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;-- Alter ZipCode&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'ZipCode'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1)&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN ZipCode NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.ZipCode column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;-- Alter Address&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'Address'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1)&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN Address NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.Address column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;-- Alter URL&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.DimCompany')&#xA;      AND c.name = 'URL'&#xA;      AND (t.name &lt;&gt; 'nvarchar' OR c.max_length &lt;&gt; -1)&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.DimCompany ALTER COLUMN URL NVARCHAR(MAX) NULL;&#xA;    PRINT 'DimCompany.URL column altered to NVARCHAR(MAX).';&#xA;END;&#xA;&#xA;PRINT 'Checked and altered DimCompany columns size to NVARCHAR(MAX) if necessary.';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Alter DimSpeciality Column Size"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{28DAA363-303B-45A8-B8E4-DBE1F33255DB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alter DimSpeciality Column Size"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;DECLARE @TableName NVARCHAR(128) = 'DimSpeciality';&#xA;DECLARE @ColumnName NVARCHAR(128) = 'SpecialityName';&#xA;DECLARE @IndexName NVARCHAR(128);&#xA;DECLARE @sql NVARCHAR(MAX);&#xA;&#xA;-- Check if the column SpecialityName in DimSpeciality is already NVARCHAR(MAX)&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.columns c&#xA;    JOIN sys.types t ON c.system_type_id = t.system_type_id&#xA;    WHERE c.object_id = OBJECT_ID('dbo.' + @TableName)&#xA;    AND c.name = @ColumnName&#xA;    AND t.name = 'nvarchar' AND c.max_length = -1 -- -1 indicates MAX&#xA;)&#xA;BEGIN&#xA;    PRINT 'DimSpeciality.SpecialityName column is already NVARCHAR(MAX). No alteration needed.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'DimSpeciality.SpecialityName column needs alteration to NVARCHAR(MAX).';&#xA;&#xA;    -- Drop dependent indexes gracefully&#xA;    -- Cursor to iterate through indexes dependent on the column&#xA;    DECLARE index_cursor CURSOR FOR&#xA;    SELECT i.name&#xA;    FROM sys.indexes i&#xA;    JOIN sys.index_columns ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id&#xA;    JOIN sys.columns c ON ic.object_id = c.object_id AND ic.column_id = c.column_id&#xA;    WHERE i.object_id = OBJECT_ID('dbo.' + @TableName)&#xA;      AND c.name = @ColumnName&#xA;      AND i.type &gt; 0 -- 0 = Heap, &gt;0 = Index (Clustered, Nonclustered, XML, Spatial etc.)&#xA;      AND i.is_primary_key = 0 -- Don't drop PK index unless absolutely necessary (usually PK is on SK, not SpecialityName)&#xA;    GROUP BY i.name; -- Group by index name to drop each index once&#xA;&#xA;    OPEN index_cursor;&#xA;    FETCH NEXT FROM index_cursor INTO @IndexName;&#xA;&#xA;    WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#xA;        SET @sql = 'IF EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(''dbo.' + @TableName + ''') AND name = ''' + @IndexName + ''') DROP INDEX ' + QUOTENAME(@IndexName) + ' ON dbo.' + QUOTENAME(@TableName) + ';';&#xA;        PRINT 'Executing: ' + @sql;&#xA;        EXEC sp_executesql @sql;&#xA;        PRINT 'Dropped index ' + @IndexName + '.';&#xA;        FETCH NEXT FROM index_cursor INTO @IndexName;&#xA;    END&#xA;&#xA;    CLOSE index_cursor;&#xA;    DEALLOCATE index_cursor;&#xA;&#xA;    -- Now alter the column to NVARCHAR(MAX)&#xA;    ALTER TABLE dbo.DimSpeciality&#xA;    ALTER COLUMN SpecialityName NVARCHAR(MAX) NULL; -- Use NULL to be safe if staging has NULLs&#xA;&#xA;    PRINT 'DimSpeciality.SpecialityName column altered to NVARCHAR(MAX). Dependent indexes were dropped.';&#xA;    PRINT 'IMPORTANT: Indexes on NVARCHAR(MAX) columns that serve as key columns have limitations (e.g., 900 byte limit for non-clustered key columns).';&#xA;    PRINT 'The original NK indexes on SpecialityName were dropped and NOT recreated automatically.';&#xA;    PRINT 'Consider alternative indexing strategies (like hashing or truncating the NK for indexing) if lookup performance is critical.';&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimBenefitType"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E1F87DFD-435A-444E-93D4-4FD23519F518}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimBenefitType"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimBenefitType AS Target&#xA;USING (&#xA;    SELECT DISTINCT&#xA;        type AS BenefitName, -- Map 'type' từ staging sang 'BenefitName'&#xA;        GETDATE() AS LoadTime&#xA;    FROM LinkedInStagingDB.dbo.Stg_benefits&#xA;    WHERE type IS NOT NULL AND LTRIM(RTRIM(type)) &lt;&gt; ''&#xA;) AS Source ON Target.BenefitName = Source.BenefitName AND Target.IsCurrent = 1&#xA;WHEN NOT MATCHED THEN&#xA;    INSERT (BenefitName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (Source.BenefitName, Source.LoadTime, '9999-12-31', 1);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimCompany"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1DF6F39F-4AE6-4CF2-81FC-A880B86B36E2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimCompany"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;-- Tạo bảng tạm với dữ liệu staging và SK hiện tại&#xA;SELECT&#xA;    stg.CompanyID,&#xA;    stg.name,&#xA;    stg.description,&#xA;    stg.CompanySizeRaw,&#xA;    stg.state,&#xA;    stg.country,&#xA;    stg.city,&#xA;    stg.zip_code,&#xA;    stg.address,&#xA;    stg.url,&#xA;    comp.CompanySK, -- SK hiện tại nếu có&#xA;    comp.ValidFrom, -- ValidFrom hiện tại&#xA;    comp.ValidTo,   -- ValidTo hiện tại&#xA;    comp.IsCurrent, -- IsCurrent hiện tại&#xA;    GETDATE() AS LoadTime&#xA;INTO #StagingCompany&#xA;FROM (&#xA;    -- !!! THÊM TOP (N) VÀO ĐÂY ĐỂ GIỚI HẠN DỮ LIỆU NGUỒN !!!&#xA;    -- Chỉ lấy 500 bản ghi đầu tiên từ staging để xử lý nhanh hơn.&#xA;    SELECT TOP 500&#xA;        TRY_CAST(company_id AS INT) AS CompanyID,&#xA;        name,&#xA;        description,&#xA;        TRY_CAST(company_size AS FLOAT) AS CompanySizeRaw,&#xA;        state,&#xA;        country,&#xA;        city,&#xA;        zip_code,&#xA;        address,&#xA;        url&#xA;    FROM LinkedInStagingDB.dbo.Stg_companies&#xA;    WHERE company_id IS NOT NULL AND LTRIM(RTRIM(company_id)) &lt;&gt; ''&#xA;) stg&#xA;LEFT JOIN dbo.DimCompany comp ON stg.CompanyID = comp.CompanyID AND comp.IsCurrent = 1;&#xA;&#xA;-- Cập nhật các bản ghi cũ (nếu có thay đổi)&#xA;UPDATE Target&#xA;SET&#xA;    Target.IsCurrent = 0,&#xA;    Target.ValidTo = DATEADD(day, -1, Source.LoadTime)&#xA;FROM dbo.DimCompany AS Target&#xA;JOIN #StagingCompany AS Source ON Target.CompanyID = Source.CompanyID AND Target.IsCurrent = 1&#xA;WHERE&#xA;    ISNULL(Target.Name, '') &lt;&gt; ISNULL(Source.name, '') OR&#xA;    ISNULL(Target.Description, '') &lt;&gt; ISNULL(Source.description, '') OR&#xA;    ISNULL(Target.CompanySizeRaw, -9999) &lt;&gt; ISNULL(Source.CompanySizeRaw, -9999) OR -- Dùng giá trị đặc biệt cho so sánh NULL&#xA;    ISNULL(Target.State, '') &lt;&gt; ISNULL(Source.state, '') OR&#xA;    ISNULL(Target.Country, '') &lt;&gt; ISNULL(Source.country, '') OR&#xA;    ISNULL(Target.City, '') &lt;&gt; ISNULL(Source.city, '') OR&#xA;    ISNULL(Target.ZipCode, '') &lt;&gt; ISNULL(Source.zip_code, '') OR&#xA;    ISNULL(Target.Address, '') &lt;&gt; ISNULL(Source.address, '') OR&#xA;    ISNULL(Target.URL, '') &lt;&gt; ISNULL(Source.url, '');&#xA;&#xA;-- Chèn các bản ghi mới (bao gồm cả các bản ghi thay đổi và bản ghi mới hoàn toàn)&#xA;INSERT INTO dbo.DimCompany (CompanyID, Name, Description, CompanySizeRaw, State, Country, City, ZipCode, Address, URL, ValidFrom, ValidTo, IsCurrent)&#xA;SELECT&#xA;    stg.CompanyID,&#xA;    stg.name,&#xA;    stg.description,&#xA;    stg.CompanySizeRaw,&#xA;    stg.state,&#xA;    stg.country,&#xA;    stg.city,&#xA;    stg.zip_code,&#xA;    stg.address,&#xA;    stg.url,&#xA;    stg.LoadTime,&#xA;    '9999-12-31',&#xA;    1&#xA;FROM #StagingCompany stg&#xA;LEFT JOIN dbo.DimCompany existing ON stg.CompanyID = existing.CompanyID AND existing.IsCurrent = 1&#xA;WHERE existing.CompanySK IS NULL -- NK mới hoàn toàn&#xA;   OR ( -- NK đã tồn tại nhưng bản ghi cũ đã hết hạn (đã được update ở bước trước)&#xA;        existing.ValidTo &lt; '9999-12-31' AND existing.IsCurrent = 0&#xA;        AND stg.CompanyID = existing.CompanyID -- Đảm bảo cùng NK&#xA;      )&#xA;   OR ( -- NK đã tồn tại và IsCurrent=1 nhưng attributes khác (cần insert bản ghi mới)&#xA;        existing.IsCurrent = 1 AND&#xA;        (&#xA;         ISNULL(existing.Name, '') &lt;&gt; ISNULL(stg.name, '') OR&#xA;         ISNULL(existing.Description, '') &lt;&gt; ISNULL(stg.description, '') OR&#xA;         ISNULL(existing.CompanySizeRaw, -9999) &lt;&gt; ISNULL(stg.CompanySizeRaw, -9999) OR&#xA;         ISNULL(existing.State, '') &lt;&gt; ISNULL(stg.state, '') OR&#xA;         ISNULL(existing.Country, '') &lt;&gt; ISNULL(stg.country, '') OR&#xA;         ISNULL(existing.City, '') &lt;&gt; ISNULL(stg.city, '') OR&#xA;         ISNULL(existing.ZipCode, '') &lt;&gt; ISNULL(stg.zip_code, '') OR&#xA;         ISNULL(existing.Address, '') &lt;&gt; ISNULL(stg.address, '') OR&#xA;         ISNULL(existing.URL, '') &lt;&gt; ISNULL(stg.url, '')&#xA;        )&#xA;      );&#xA;&#xA;DROP TABLE #StagingCompany;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimCompensationDetails"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{73D79071-CD2F-4F71-AD84-00E450D3F8DC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimCompensationDetails"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimCompensationDetails AS Target&#xA;USING (&#xA;    SELECT DISTINCT&#xA;        ISNULL(pay_period, 'N/A') AS PayPeriod, -- Sử dụng giá trị chuẩn hóa hoặc mặc định&#xA;        ISNULL(currency, 'N/A') AS Currency,&#xA;        ISNULL(compensation_type, 'N/A') AS CompensationType,&#xA;        GETDATE() AS LoadTime&#xA;    FROM LinkedInStagingDB.dbo.Stg_job_postings -- Hoặc Stg_salaries nếu muốn kết hợp&#xA;) AS Source ON Target.PayPeriodNormalized = Source.PayPeriod AND Target.CurrencyNormalized = Source.Currency AND Target.CompensationTypeNormalized = Source.CompensationType AND Target.IsCurrent = 1&#xA;WHEN NOT MATCHED THEN&#xA;    INSERT (PayPeriod, Currency, CompensationType, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (Source.PayPeriod, Source.Currency, Source.CompensationType, Source.LoadTime, '9999-12-31', 1);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimExperienceLevel"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B850FFCA-F049-4A2B-BFCD-362D55B9BB7F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimExperienceLevel"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimExperienceLevel AS Target&#xA;USING (&#xA;    SELECT DISTINCT&#xA;        formatted_experience_level,&#xA;        GETDATE() AS LoadTime&#xA;    FROM LinkedInStagingDB.dbo.Stg_job_postings&#xA;    WHERE formatted_experience_level IS NOT NULL AND LTRIM(RTRIM(formatted_experience_level)) &lt;&gt; ''&#xA;) AS Source ON Target.FormattedExperienceLevel = Source.formatted_experience_level AND Target.IsCurrent = 1&#xA;WHEN NOT MATCHED THEN&#xA;    INSERT (FormattedExperienceLevel, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (Source.formatted_experience_level, Source.LoadTime, '9999-12-31', 1);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimIndustry"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{44917276-48C5-42D5-962A-AA38668B8797}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimIndustry"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimIndustry AS Target&#xA;USING (&#xA;    SELECT DISTINCT&#xA;        TRY_CAST(industry_id AS INT) AS IndustryID, -- Chuyển đổi kiểu dữ liệu&#xA;        industry_name,&#xA;        GETDATE() AS LoadTime&#xA;    FROM LinkedInStagingDB.dbo.Stg_industries&#xA;    WHERE industry_id IS NOT NULL AND LTRIM(RTRIM(industry_id)) &lt;&gt; '' -- Chỉ lấy bản ghi có ID&#xA;) AS Source ON Target.IndustryID = Source.IndustryID AND Target.IsCurrent = 1&#xA;WHEN MATCHED AND (&#xA;    ISNULL(Target.IndustryName, '') &lt;&gt; ISNULL(Source.industry_name, '')&#xA;)&#xA;THEN UPDATE SET&#xA;    Target.IsCurrent = 0,&#xA;    Target.ValidTo = DATEADD(day, -1, Source.LoadTime)&#xA;WHEN NOT MATCHED THEN&#xA;    INSERT (IndustryID, IndustryName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (Source.IndustryID, Source.industry_name, Source.LoadTime, '9999-12-31', 1);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimJob"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{48361798-2AD9-43D4-B768-477843B3BA4A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimJob"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimJob AS Target&#xA;USING (&#xA;    -- !!! THÊM DISTINCT VÀO ĐÂY ĐỂ ĐẢM BẢO JOBID_NK LÀ DUY NHẤT TRONG NGUỒN !!!&#xA;    SELECT DISTINCT&#xA;        -- Các cột từ Staging&#xA;        ISNULL(TRY_CAST(stg.job_id AS INT), -1) AS JobID_NK,&#xA;        ISNULL(TRY_CAST(stg.company_id AS INT), -1) AS CompanyID_NK,&#xA;        ISNULL(stg.formatted_experience_level, 'Unknown') AS FormattedExperienceLevel_NK,&#xA;        stg.title,&#xA;        stg.description,&#xA;        stg.formatted_work_type,&#xA;        TRY_CAST(stg.remote_allowed AS BIT) AS RemoteAllowed,&#xA;        stg.job_posting_url,&#xA;        stg.application_url,&#xA;        stg.application_type,&#xA;        stg.skills_desc,&#xA;        stg.posting_domain,&#xA;        TRY_CAST(stg.sponsored AS BIT) AS Sponsored,&#xA;        stg.work_type,&#xA;        TRY_CAST(stg.original_listed_time AS FLOAT) AS OriginalListedTime_raw,&#xA;        TRY_CAST(stg.listed_time AS FLOAT) AS ListedTime_raw,&#xA;        TRY_CAST(stg.expiry AS FLOAT) AS Expiry_raw,&#xA;        TRY_CAST(stg.closed_time AS FLOAT) AS ClosedTime_raw,&#xA;        CASE WHEN TRY_CAST(stg.original_listed_time AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(stg.original_listed_time AS BIGINT) AS BIGINT), '1970-01-01') END AS OriginalListedTimestamp,&#xA;        CASE WHEN TRY_CAST(stg.listed_time AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(stg.listed_time AS BIGINT) AS BIGINT), '1970-01-01') END AS ListedTimestamp,&#xA;        CASE WHEN TRY_CAST(expiry AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(expiry AS BIGINT) AS BIGINT), '1970-01-01') END AS ExpiryTimestamp,&#xA;        CASE WHEN TRY_CAST(stg.closed_time AS FLOAT) IS NOT NULL THEN DATEADD(s, CAST(TRY_CAST(stg.closed_time AS BIGINT) AS BIGINT), '1970-01-01') END AS ClosedTimestamp,&#xA;&#xA;        -- LOOKUP SKs DÙNG LEFT JOIN BÊN TRONG SUBQUERY&#xA;        ISNULL(dc.CompanySK, -1) AS CompanySK_at_listing, -- Lấy CompanySK từ lookup, gán -1 nếu NULL&#xA;        ISNULL(del.ExperienceLevelSK, -1) AS ExperienceLevelSK -- Lấy ExpLevelSK từ lookup, gán -1 nếu NULL&#xA;&#xA;    FROM LinkedInStagingDB.dbo.Stg_job_postings stg&#xA;    -- JOIN với DimCompany để lấy CompanySK hiện tại&#xA;    LEFT JOIN dbo.DimCompany dc ON ISNULL(TRY_CAST(stg.company_id AS INT), -1) = dc.CompanyID AND dc.IsCurrent = 1&#xA;    -- JOIN với DimExperienceLevel để lấy ExperienceLevelSK hiện tại&#xA;    LEFT JOIN dbo.DimExperienceLevel del ON ISNULL(stg.formatted_experience_level, 'Unknown') = del.FormattedExperienceLevel AND del.IsCurrent = 1&#xA;&#xA;    -- Lọc các dòng có NK job_id không hợp lệ (vẫn cần lọc)&#xA;    WHERE stg.job_id IS NOT NULL AND LTRIM(RTRIM(stg.job_id)) &lt;&gt; ''&#xA;      AND TRY_CAST(stg.job_id AS INT) IS NOT NULL&#xA;&#xA;    -- Optional: THÊM TOP (N) VÀO ĐÂY NẾU MUỐN CHỈ LOAD ÍT DÒNG TỪ STAGING&#xA;    -- SELECT TOP 10000 ... FROM ... WHERE ... ORDER BY (Một cột nào đó)&#xA;&#xA;) AS Source ON Target.JobID = Source.JobID_NK -- Match trên NK JobID đã được chuyển đổi&#xA;&#xA;WHEN MATCHED THEN UPDATE SET&#xA;    -- Sử dụng trực tiếp các cột SK đã được tính toán/lookup trong Source subquery&#xA;    Target.CompanySK_at_listing = Source.CompanySK_at_listing,&#xA;    Target.ExperienceLevelSK = Source.ExperienceLevelSK,&#xA;    Target.Title = Source.title,&#xA;    Target.Description = Source.description,&#xA;    Target.FormattedWorkType = Source.formatted_work_type,&#xA;    Target.RemoteAllowed = Source.RemoteAllowed,&#xA;    Target.JobPostingURL = Source.job_posting_url,&#xA;    Target.ApplicationURL = Source.application_url,&#xA;    Target.ApplicationType = Source.application_type,&#xA;    Target.SkillsDesc = Source.skills_desc,&#xA;    Target.PostingDomain = Source.posting_domain,&#xA;    Target.Sponsored = Source.Sponsored,&#xA;    Target.WorkType = Source.work_type,&#xA;    Target.OriginalListedTime_raw = Source.OriginalListedTime_raw,&#xA;    Target.ListedTime_raw = Source.ListedTime_raw,&#xA;    Target.Expiry_raw = Source.Expiry_raw,&#xA;    Target.ClosedTime_raw = Source.ClosedTime_raw,&#xA;    Target.OriginalListedTimestamp = Source.OriginalListedTimestamp,&#xA;    Target.ListedTimestamp = Source.ListedTimestamp,&#xA;    Target.ExpiryTimestamp = Source.ExpiryTimestamp,&#xA;    Target.ClosedTimestamp = Source.ClosedTimestamp&#xA;&#xA;WHEN NOT MATCHED BY TARGET THEN INSERT&#xA;    (JobID, CompanySK_at_listing, ExperienceLevelSK, Title, Description, FormattedWorkType, RemoteAllowed, JobPostingURL, ApplicationURL, ApplicationType, SkillsDesc, PostingDomain, Sponsored, WorkType, OriginalListedTime_raw, ListedTime_raw, Expiry_raw, ClosedTime_raw, OriginalListedTimestamp, ListedTimestamp, ExpiryTimestamp, ClosedTimestamp)&#xA;VALUES&#xA;    -- Sử dụng trực tiếp các cột NK và SK đã được tính toán/lookup trong Source subquery&#xA;    (Source.JobID_NK, Source.CompanySK_at_listing, Source.ExperienceLevelSK, Source.title, Source.description, Source.formatted_work_type, Source.RemoteAllowed, Source.job_posting_url, Source.application_url, Source.application_type, Source.skills_desc, Source.posting_domain, Source.Sponsored, Source.work_type, Source.OriginalListedTime_raw, Source.ListedTime_raw, Source.Expiry_raw, Source.ClosedTime_raw, Source.OriginalListedTimestamp, Source.ListedTimestamp, Source.ExpiryTimestamp, Source.ClosedTimestamp);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimLocation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B98E8870-E506-4816-8FBF-147097E0B149}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimLocation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;-- Tạo bảng tạm với dữ liệu staging và SK hiện tại&#xA;SELECT&#xA;    ISNULL(stg.location, 'NULL') AS LocationStringNormalized,&#xA;    ISNULL(stg.zip_code, 'NULL') AS ZipCodeNormalized,&#xA;    ISNULL(stg.fips, 'NULL') AS FIPSNormalized,&#xA;    stg.location AS LocationString, -- Lưu giá trị gốc&#xA;    NULL AS City, -- Không có trong stg_job_postings, để NULL&#xA;    NULL AS State, -- Không có trong stg_job_postings, để NULL&#xA;    NULL AS Country, -- Không có trong stg_job_postings, để NULL&#xA;    stg.zip_code AS ZipCode,&#xA;    stg.fips AS FIPS,&#xA;    loc.LocationSK, -- SK hiện tại nếu có&#xA;    loc.ValidFrom,&#xA;    loc.ValidTo,&#xA;    loc.IsCurrent,&#xA;    GETDATE() AS LoadTime&#xA;INTO #StagingLocation&#xA;FROM (&#xA;    -- !!! THÊM TOP (N) VÀO ĐÂY ĐỂ GIỚI HẠN DỮ LIỆU NGUỒN !!!&#xA;    -- Chỉ lấy N bản ghi đầu tiên từ staging để xử lý nhanh hơn.&#xA;    -- Thay 10000 bằng số lượng mong muốn cho mục đích kiểm thử.&#xA;    SELECT TOP 500&#xA;        location,&#xA;        zip_code,&#xA;        fips&#xA;    FROM LinkedInStagingDB.dbo.Stg_job_postings&#xA;    -- Lọc bớt các dòng hoàn toàn rỗng cho NK nếu cần&#xA;    WHERE (location IS NOT NULL AND LTRIM(RTRIM(location)) &lt;&gt; '')&#xA;       OR (zip_code IS NOT NULL AND LTRIM(RTRIM(zip_code)) &lt;&gt; '')&#xA;       OR (fips IS NOT NULL AND LTRIM(RTRIM(fips)) &lt;&gt; '') -- Thêm điều kiện lọc bớt dòng trống hoàn toàn&#xA;) stg&#xA;LEFT JOIN dbo.DimLocation loc ON ISNULL(stg.location, 'NULL') = loc.LocationStringNormalized&#xA;                             AND ISNULL(stg.zip_code, 'NULL') = loc.ZipCodeNormalized&#xA;                             AND ISNULL(stg.fips, 'NULL') = loc.FIPSNormalized&#xA;                             AND loc.IsCurrent = 1;&#xA;&#xA;-- Chèn các bản ghi mới (chỉ insert nếu NK chưa tồn tại trong DimLocation (IsCurrent=1))&#xA;INSERT INTO dbo.DimLocation (LocationString, City, State, Country, ZipCode, FIPS, ValidFrom, ValidTo, IsCurrent)&#xA;SELECT&#xA;    stg.LocationString,&#xA;    stg.City,&#xA;    stg.State,&#xA;    stg.Country,&#xA;    stg.ZipCode,&#xA;    stg.FIPS,&#xA;    stg.LoadTime,&#xA;    '9999-12-31',&#xA;    1&#xA;FROM #StagingLocation stg&#xA;WHERE stg.LocationSK IS NULL; -- Chỉ insert nếu NK chưa tồn tại với IsCurrent = 1&#xA;&#xA;DROP TABLE #StagingLocation;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimSkill"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C2596B85-6DC7-4321-BBE9-82A1C7BA994F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimSkill"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimSkill AS Target&#xA;USING (&#xA;    SELECT DISTINCT&#xA;        skill_abr,&#xA;        skill_name,&#xA;        GETDATE() AS LoadTime -- Thời điểm load dữ liệu staging&#xA;    FROM LinkedInStagingDB.dbo.Stg_skills&#xA;    -- Bỏ qua các bản ghi có key rỗng hoặc null nếu cần&#xA;    WHERE skill_abr IS NOT NULL AND LTRIM(RTRIM(skill_abr)) &lt;&gt; ''&#xA;) AS Source ON Target.SkillAbr = Source.skill_abr AND Target.IsCurrent = 1&#xA;WHEN MATCHED AND (&#xA;    ISNULL(Target.SkillName, '') &lt;&gt; ISNULL(Source.skill_name, '')&#xA;)&#xA;THEN UPDATE SET&#xA;    Target.IsCurrent = 0,&#xA;    Target.ValidTo = DATEADD(day, -1, Source.LoadTime)&#xA;WHEN NOT MATCHED THEN&#xA;    INSERT (SkillAbr, SkillName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (Source.skill_abr, Source.skill_name, Source.LoadTime, '9999-12-31', 1);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimSpeciality"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AD8581D2-B352-4054-8FCF-3281F590D75E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimSpeciality"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="USE LinkedInDW;&#xA;&#xA;MERGE dbo.DimSpeciality AS Target&#xA;USING (&#xA;    SELECT DISTINCT&#xA;        speciality AS SpecialityName,&#xA;        GETDATE() AS LoadTime&#xA;    FROM LinkedInStagingDB.dbo.Stg_company_specialities&#xA;    WHERE speciality IS NOT NULL AND LTRIM(RTRIM(speciality)) &lt;&gt; ''&#xA;) AS Source ON Target.SpecialityName = Source.SpecialityName AND Target.IsCurrent = 1&#xA;WHEN NOT MATCHED THEN&#xA;    INSERT (SpecialityName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (Source.SpecialityName, Source.LoadTime, '9999-12-31', 1);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Setup Unknown Members"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A28DBDB6-20A9-434E-BBA4-33C20F64DAE5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Setup Unknown Members"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6133D4D-79C2-4AB3-8744-DADD70B21A77}"
+          SQLTask:SqlStatementSource="-- Kết nối: LinkedInDW&#xA;&#xA;USE LinkedInDW;&#xA;&#xA;-- DimCompensationDetails: Thêm 'Unknown'&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimCompensationDetails WHERE CompensationDetailsSK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimCompensationDetails ON;&#xA;    -- Loại bỏ các cột Computed Columns khỏi danh sách cột INSERT&#xA;    INSERT INTO dbo.DimCompensationDetails (CompensationDetailsSK, PayPeriod, Currency, CompensationType, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, 'Unknown', 'N/A', 'Unknown', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimCompensationDetails OFF;&#xA;END;&#xA;&#xA;-- DimLocation: Thêm 'Unknown'&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimLocation WHERE LocationSK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimLocation ON;&#xA;    -- Loại bỏ các cột Computed Columns khỏi danh sách cột INSERT&#xA;    INSERT INTO dbo.DimLocation (LocationSK, LocationString, City, State, Country, ZipCode, FIPS, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'N/A', 'N/A', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimLocation OFF;&#xA;END;&#xA;&#xA;-- DimCompany: Thêm 'Unknown'&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimCompany WHERE CompanySK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimCompany ON;&#xA;    INSERT INTO dbo.DimCompany (CompanySK, CompanyID, Name, Description, CompanySizeRaw, State, Country, City, ZipCode, Address, URL, EmployeeCount, FollowerCount, SourceTimeRecorded, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, -1, 'Unknown Company', 'N/A', NULL, 'Unknown', 'Unknown', 'Unknown', 'N/A', 'N/A', 'N/A', NULL, NULL, NULL, '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimCompany OFF;&#xA;END;&#xA;&#xA;-- DimSkill Unknown&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimSkill WHERE SkillSK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimSkill ON;&#xA;    INSERT INTO dbo.DimSkill (SkillSK, SkillAbr, SkillName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, 'UNKNOWN', 'Unknown Skill', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimSkill OFF;&#xA;END;&#xA;&#xA;-- DimIndustry Unknown&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimIndustry WHERE IndustrySK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimIndustry ON;&#xA;    INSERT INTO dbo.DimIndustry (IndustrySK, IndustryID, IndustryName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, -1, 'Unknown Industry', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimIndustry OFF;&#xA;END;&#xA;&#xA;-- DimExperienceLevel Unknown&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimExperienceLevel WHERE ExperienceLevelSK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimExperienceLevel ON;&#xA;    INSERT INTO dbo.DimExperienceLevel (ExperienceLevelSK, FormattedExperienceLevel, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, 'Unknown', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimExperienceLevel OFF;&#xA;END;&#xA;&#xA;-- DimBenefitType Unknown&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimBenefitType WHERE BenefitTypeSK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimBenefitType ON;&#xA;    INSERT INTO dbo.DimBenefitType (BenefitTypeSK, BenefitName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, 'Unknown', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimBenefitType OFF;&#xA;END;&#xA;&#xA;-- DimSpeciality Unknown&#xA;IF NOT EXISTS (SELECT 1 FROM dbo.DimSpeciality WHERE SpecialitySK = -1)&#xA;BEGIN&#xA;    SET IDENTITY_INSERT dbo.DimSpeciality ON;&#xA;    INSERT INTO dbo.DimSpeciality (SpecialitySK, SpecialityName, ValidFrom, ValidTo, IsCurrent)&#xA;    VALUES (-1, 'Unknown', '1900-01-01', '9999-12-31', 1);&#xA;    SET IDENTITY_INSERT dbo.DimSpeciality OFF;&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{05894DF6-AD8E-4BE7-99BE-12BD1035C721}"
+      DTS:From="Package\Setup Unknown Members"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DimSkill" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B9289F95-AF3F-45A0-82CE-213CAA8D9099}"
+      DTS:From="Package\Load DimSkill"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load DimIndustry" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{5C4774CC-BF57-433C-A2EC-8931E6173FB9}"
+      DTS:From="Package\Load DimLocation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Load DimJob" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{10A4ADA9-1FB5-4F28-A8DE-19CC6DE17DE0}"
+      DTS:From="Package\Load DimIndustry"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load DimExperienceLevel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{B60D8184-9565-4CA6-BB28-1C472D548645}"
+      DTS:From="Package\Load DimExperienceLevel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load DimBenefitType" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{C4426864-846A-4FFE-A61C-7D95592B5A06}"
+      DTS:From="Package\Load DimBenefitType"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Alter DimSpeciality Column Size" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED969C1A-FCD5-408E-ACE5-1B5B91EF953B}"
+      DTS:From="Package\Alter DimSpeciality Column Size"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Load DimSpeciality" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{19FFCF3F-AA1D-4EEB-95D6-C2665F1379B7}"
+      DTS:From="Package\Load DimSpeciality"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Load DimCompensationDetails" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{B5D7928B-B236-4DCD-9A55-47DBA09BD76E}"
+      DTS:From="Package\Load DimCompensationDetails"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Alter DimCompany Columns Size" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{4C026E19-4F49-4341-8712-6B7DA0356B7E}"
+      DTS:From="Package\Alter DimCompany Columns Size"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Load DimCompany" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{3855358B-0744-472E-B41D-9632BEEA8D10}"
+      DTS:From="Package\Load DimCompany"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Load DimLocation" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\Setup Unknown Members"
+          TopLeft="166.874992540106,80.5999961566926" />
+        <NodeLayout
+          Size="142.666666666667,42.6666666666667"
+          Id="Package\Load DimSkill"
+          TopLeft="201.874990975484,155.999992561341" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="270.208325091129,123.266662823359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.7333297379813"
+              Start="0,0"
+              End="0,25.2333297379813">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.2333297379813" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Load DimIndustry"
+          TopLeft="184.553563178384,296.957128697123" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="273.208324308818,198.666659228007">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.6547611304337,98.2904694691161"
+              Start="0,0"
+              End="-32.6547611304337,90.7904694691161">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.4044818584603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.4044818584603"
+                    Point2="0,58.4044818584603"
+                    Point3="-4,58.4044818584603" />
+                  <mssgle:LineSegment
+                    End="-28.6547611304337,58.4044818584603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.6547611304337,58.4044818584603"
+                    Point2="-32.6547611304337,58.4044818584603"
+                    Point3="-32.6547611304337,62.4044818584603" />
+                  <mssgle:LineSegment
+                    End="-32.6547611304337,90.7904694691161" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="200,42.6666666666667"
+          Id="Package\Load DimExperienceLevel"
+          TopLeft="141.964279367988,368.642839564597" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="266.553563178384,339.62379536379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56.5892838103962,29.0190442008065"
+              Start="0,0"
+              End="-56.5892838103962,21.5190442008065">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.2732405957181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.2732405957181"
+                    Point2="0,17.2732405957181"
+                    Point3="-4,17.2732405957181" />
+                  <mssgle:LineSegment
+                    End="-52.5892838103962,17.2732405957181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52.5892838103962,17.2732405957181"
+                    Point2="-56.5892838103962,17.2732405957181"
+                    Point3="-56.5892838103962,21.2732405957181" />
+                  <mssgle:LineSegment
+                    End="-56.5892838103962,21.5190442008065" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\Load DimBenefitType"
+          TopLeft="425.892838103963,85.4285673550198" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="273.964279367988,368.642839564597">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="213.261892069309,-240.54760554291"
+              Start="0,0"
+              End="213.261892069309,-233.04760554291">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-116.142928122085" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-116.142928122085"
+                    Point2="0,-120.142928122085"
+                    Point3="4,-120.142928122085" />
+                  <mssgle:LineSegment
+                    End="209.261892069309,-120.142928122085" />
+                  <mssgle:CubicBezierSegment
+                    Point1="209.261892069309,-120.142928122085"
+                    Point2="213.261892069309,-120.142928122085"
+                    Point3="213.261892069309,-124.142928122085" />
+                  <mssgle:LineSegment
+                    End="213.261892069309,-233.04760554291" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Load DimSpeciality"
+          TopLeft="437.499980442227,269.285701445171" />
+        <NodeLayout
+          Size="228,42.6666666666667"
+          Id="Package\Alter DimSpeciality Column Size"
+          TopLeft="428.571409412793,181.07141993727" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="543.565457091712,128.095234021686">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.9761859155839"
+              Start="0,0"
+              End="0,45.4761859155839">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.4761859155839" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="542.571409412793,223.738086603937">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-47.7380956372334,45.5476148412343"
+              Start="0,0"
+              End="-47.7380956372334,38.0476148412343">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.07075221696" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.07075221696"
+                    Point2="0,27.07075221696"
+                    Point3="-4,27.07075221696" />
+                  <mssgle:LineSegment
+                    End="-43.7380956372334,27.07075221696" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43.7380956372334,27.07075221696"
+                    Point2="-47.7380956372334,27.07075221696"
+                    Point3="-47.7380956372334,31.07075221696" />
+                  <mssgle:LineSegment
+                    End="-47.7380956372334,38.0476148412343" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="222.666666666667,42.6666666666667"
+          Id="Package\Load DimCompensationDetails"
+          TopLeft="409.821410250984,353.785697415897" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="521.327362013272,311.952368111838">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.8333293040594"
+              Start="0,0"
+              End="0,34.3333293040594">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.3333293040594" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Load DimCompany"
+          TopLeft="690.4761596095,252.26189273312" />
+        <NodeLayout
+          Size="233.333333333334,42.6666666666667"
+          Id="Package\Alter DimCompany Columns Size"
+          TopLeft="676.785684031036,90.0714242764884" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="556.932521362095,353.785697415897">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="198.964273780052,-221.047606472742"
+              Start="0,0"
+              End="198.964273780052,-213.547606472742">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-106.568402255769" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-106.568402255769"
+                    Point2="0,-110.568402255769"
+                    Point3="4,-110.568402255769" />
+                  <mssgle:LineSegment
+                    End="194.964273780052,-110.568402255769" />
+                  <mssgle:CubicBezierSegment
+                    Point1="194.964273780052,-110.568402255769"
+                    Point2="198.964273780052,-110.568402255769"
+                    Point3="198.964273780052,-114.568402255769" />
+                  <mssgle:LineSegment
+                    End="198.964273780052,-213.547606472742" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="831.007906253258,132.738090943155">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83.1984133104247,119.523801789965"
+              Start="0,0"
+              End="-83.1984133104247,112.023801789965">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5666916993387" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55.5666916993387"
+                    Point2="0,59.5666916993387"
+                    Point3="-4,59.5666916993387" />
+                  <mssgle:LineSegment
+                    End="-79.1984133104247,59.5666916993387" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79.1984133104247,59.5666916993387"
+                    Point2="-83.1984133104247,59.5666916993387"
+                    Point3="-83.1984133104247,63.5666916993387" />
+                  <mssgle:LineSegment
+                    End="-83.1984133104247,112.023801789965" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Load DimLocation"
+          TopLeft="685.267826508998,341.961888455891" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="774.4761596095,294.928559399787">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.2083331005026,47.0333290561042"
+              Start="0,0"
+              End="-33.2083331005026,39.5333290561042">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9473404536271" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.9473404536271"
+                    Point2="0,27.9473404536271"
+                    Point3="-4,27.9473404536271" />
+                  <mssgle:LineSegment
+                    End="-29.2083331005026,27.9473404536271" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.2083331005026,27.9473404536271"
+                    Point2="-33.2083331005026,27.9473404536271"
+                    Point3="-33.2083331005026,31.9473404536271" />
+                  <mssgle:LineSegment
+                    End="-33.2083331005026,39.5333290561042" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\Load DimJob"
+          TopLeft="943.035674044598,102.885709379741" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="793.267826508998,341.961888455891">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="219.7678475356,-196.409512409483"
+              Start="0,0"
+              End="219.7678475356,-188.909512409483">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-75.7024108328338" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-75.7024108328338"
+                    Point2="0,-79.7024108328338"
+                    Point3="4,-79.7024108328338" />
+                  <mssgle:LineSegment
+                    End="215.7678475356,-79.7024108328338" />
+                  <mssgle:CubicBezierSegment
+                    Point1="215.7678475356,-79.7024108328338"
+                    Point2="219.7678475356,-79.7024108328338"
+                    Point3="219.7678475356,-83.7024108328338" />
+                  <mssgle:LineSegment
+                    End="219.7678475356,-188.909512409483" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

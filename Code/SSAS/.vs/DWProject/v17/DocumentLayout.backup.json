@@ -1,0 +1,247 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\UTE\\Kho dl\\DWProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW 1.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Job DW 1.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Job.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Job.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Job DW.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Fact Job Posting.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Fact Job Posting.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Location.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Location.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Experience Level.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Experience Level.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Compensation Details.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Compensation Details.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Skill.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Skill.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Bridge Job Benefit.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Bridge Job Benefit.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Benefit Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Benefit Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Speciality.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Speciality.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Company.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Company.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Industry.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Dim Industry.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{DF82F01C-F63C-DEB2-F59D-26F73BBEA85F}|DWProject\\ .dwproj|solutionrelative:DWProject\\Job DW.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Job DW 1.cube [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW 1.cube",
+              "RelativeDocumentMoniker": "DWProject\\Job DW 1.cube",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW 1.cube [Design]",
+              "RelativeToolTip": "DWProject\\Job DW 1.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T13:55:29.377Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dim Skill.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Skill.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Skill.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Skill.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Skill.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:57:01.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dim Date.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Date.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Date.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Date.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Date.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:57:06.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dim Compensation Details.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Compensation Details.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Compensation Details.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Compensation Details.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Compensation Details.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:57:18.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dim Experience Level.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Experience Level.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Experience Level.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Experience Level.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Experience Level.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:57:28.477Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dim Location.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Location.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Location.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Location.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Location.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:57:34.193Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Fact Job Posting.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Fact Job Posting.dim",
+              "RelativeDocumentMoniker": "DWProject\\Fact Job Posting.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Fact Job Posting.dim [Design]",
+              "RelativeToolTip": "DWProject\\Fact Job Posting.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:57:46.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dim Job.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Job.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Job.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Job.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Job.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:43:26.196Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Bridge Job Benefit.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Bridge Job Benefit.dim",
+              "RelativeDocumentMoniker": "DWProject\\Bridge Job Benefit.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Bridge Job Benefit.dim [Design]",
+              "RelativeToolTip": "DWProject\\Bridge Job Benefit.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:56:56.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Job DW.cube [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW.cube",
+              "RelativeDocumentMoniker": "DWProject\\Job DW.cube",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW.cube [Design]",
+              "RelativeToolTip": "DWProject\\Job DW.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:33:59.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Dim Benefit Type.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Benefit Type.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Benefit Type.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Benefit Type.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Benefit Type.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:56:50.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dim Speciality.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Speciality.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Speciality.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Speciality.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Speciality.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:43:19.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Dim Company.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Company.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Company.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Company.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Company.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:41:51.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Dim Industry.dim [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Industry.dim",
+              "RelativeDocumentMoniker": "DWProject\\Dim Industry.dim",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Dim Industry.dim [Design]",
+              "RelativeToolTip": "DWProject\\Dim Industry.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:34:03.16Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Job DW.dsv [Design]",
+              "DocumentMoniker": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW.dsv",
+              "RelativeDocumentMoniker": "DWProject\\Job DW.dsv",
+              "ToolTip": "D:\\UTE\\Kho dl\\DWProject\\DWProject\\Job DW.dsv [Design]",
+              "RelativeToolTip": "DWProject\\Job DW.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-21T09:33:00.994Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
